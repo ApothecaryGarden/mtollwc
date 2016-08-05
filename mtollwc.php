@@ -142,7 +142,32 @@ final class Mtollwc {
 	 */
 	public function plugin_classes() {
 		// Attach other plugin classes to the base plugin class.
-		// $this->plugin_class = new M_Plugin_Class( $this );
+
+	//	$this->maia_admin = new M_Maia_Admin( $this );
+
+		// post types
+		$this->lounge = new M_Lounge( $this );
+		$this->premium = new M_Premium( $this );
+
+		// widgets
+		require( self::dir( 'includes/class-badge143.php' ) );
+		require( self::dir( 'includes/class-dynamic-lounge-image.php' ) );
+		require( self::dir( 'includes/class-moon-phase.php' ) );
+		require( self::dir( 'includes/class-landing-login.php' ) );
+
+		// options panel
+		require( self::dir( 'includes/admin.php' ) );
+
+		// some functions for woocommerce subscriptions
+		require( self::dir( 'includes/subscription-functions.php' ) );
+
+		// should probably be in the theme
+		$this->theme_settings = new M_Theme_Settings( $this );
+
+		// magic
+		$this->points = new M_Points( $this );
+		M_Create_Relate_Points::get_instance();
+	//	$this->luna_woofunnels = new M_Luna_Woofunnels( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
