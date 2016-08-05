@@ -214,20 +214,6 @@ class MaiaToll_Admin {
 		) );
 
 		$cmb->add_field( array(
-			'name'    => 'Home page flower oracle left box',
-			'id'      => 'flower_oracle_home_left',
-			'type'    => 'wysiwyg',
-			'options' => array(
-				'wpautop' => true, // use wpautop?
-				'media_buttons' => false, // show insert/upload button(s)
-				'textarea_rows' => get_option('default_post_edit_rows', 10), // rows="..."
-				'teeny' => true, // output the minimal editor config used in Press This
-				'tinymce' => true, // load TinyMCE, can be used to pass settings directly to TinyMCE using an array()
-				'quicktags' => true // load Quicktags, can be used to pass settings directly to Quicktags using an array()
-			),
-		) );
-
-		$cmb->add_field( array(
 			'name'    => 'Witch Camp left logo',
 			'desc'    => '',
 			'id'      => 'wc_left_logo',
