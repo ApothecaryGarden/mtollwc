@@ -1,0 +1,17 @@
+{
+  "generator-plugin-wp": {
+    "name": "Mtollwc",
+    "homepage": "http://github.com/oakwoodgates/mtollwc",
+    "description": "A radical new plugin for WordPress!",
+    "version": "0.0.1",
+    "author": "WPGuru4u",
+    "authoremail": "wpguru4u@gmail.com",
+    "authorurl": "http://wpguru4u.com",
+    "license": "GPLv2",
+    "slug": "mtollwc",
+    "classname": "Mtollwc",
+    "classprefix": "M_",
+    "prefix": "mtollwc",
+    "year": 2016
+  }
+}
