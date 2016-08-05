@@ -33,7 +33,7 @@ class M_Lounge extends CPT_Core {
 		// Register this cpt
 		// First parameter should be an array with Singular, Plural, and Registered name.
 		parent::__construct(
-			array( __( 'Lounge', 'mtoll' ), __( 'Lounges', 'mtoll' ), 'lounge' ),
+			array( __( 'Lounge', 'mtollwc' ), __( 'Lounges', 'mtollwc' ), 'lounge' ),
 			array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'post-formats', 'comments' ) ),
 			array( 'has_archive' => false )
 		);
@@ -60,7 +60,7 @@ class M_Lounge extends CPT_Core {
 
 		$cmb = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox',
-			'title'         => __( 'Lounge Meta Box', 'mtoll' ),
+			'title'         => __( 'Lounge Meta Box', 'mtollwc' ),
 			'object_types'  => array( 'lounge' ),
 		) );
 

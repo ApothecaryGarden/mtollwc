@@ -55,15 +55,15 @@ class M_Badge143 extends WP_Widget {
 	 */
 	public function __construct() {
 
-		$this->widget_name          = esc_html__( 'Mtoll Badge143', 'mtoll' );
-		$this->default_widget_title = esc_html__( 'Mtoll Badge143', 'mtoll' );
+		$this->widget_name          = esc_html__( 'Mtoll Badge143', 'mtollwc' );
+		$this->default_widget_title = esc_html__( 'Mtoll Badge143', 'mtollwc' );
 
 		parent::__construct(
 			$this->widget_slug,
 			$this->widget_name,
 			array(
 				'classname'   => $this->widget_slug,
-				'description' => esc_html__( 'A widget boilerplate description.', 'mtoll' ),
+				'description' => esc_html__( 'A widget boilerplate description.', 'mtollwc' ),
 			)
 		);
 
@@ -228,12 +228,12 @@ class M_Badge143 extends WP_Widget {
 		);
 
 		?>
-		<p><label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'mtoll' ); ?></label>
+		<p><label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'mtollwc' ); ?></label>
 		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_html( $instance['title'] ); ?>" placeholder="optional" /></p>
 
-		<p><label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php esc_html_e( 'Text:', 'mtoll' ); ?></label>
+		<p><label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php esc_html_e( 'Text:', 'mtollwc' ); ?></label>
 		<textarea class="widefat" rows="16" cols="20" id="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'text' ) ); ?>"><?php echo esc_textarea( $instance['text'] ); ?></textarea></p>
-		<p class="description"><?php esc_html_e( 'Basic HTML tags are allowed.', 'mtoll' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Basic HTML tags are allowed.', 'mtollwc' ); ?></p>
 		<?php
 	}
 }

@@ -30,7 +30,7 @@ class M_Premium extends CPT_Core {
 		// Register this cpt
 		// First parameter should be an array with Singular, Plural, and Registered name.
 		parent::__construct(
-			array( __( 'Premium', 'mtoll' ), __( 'Premiums', 'mtoll' ), 'premium' ),
+			array( __( 'Premium', 'mtollwc' ), __( 'Premiums', 'mtollwc' ), 'premium' ),
 			array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'post-formats' ) )
 		);
 	}
@@ -56,7 +56,7 @@ class M_Premium extends CPT_Core {
 
 		$cmb = new_cmb2_box( array(
 			'id'            => $prefix . 'metabox',
-			'title'         => __( 'Premium Meta Box', 'mtoll' ),
+			'title'         => __( 'Premium Meta Box', 'mtollwc' ),
 			'object_types'  => array( 'premium' ),
 		) );
 	}

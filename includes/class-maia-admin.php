@@ -55,7 +55,7 @@ class M_Maia_Admin {
 		$this->plugin = $plugin;
 		$this->hooks();
 
-		$this->title = __( 'Maia Admin', 'mtoll' );
+		$this->title = __( 'Maia Admin', 'mtollwc' );
 	}
 
 	/**
