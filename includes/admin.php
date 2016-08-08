@@ -271,12 +271,12 @@ class MaiaToll_Admin {
 
 		$cmb->add_field( array(
 			'name' => __( 'Where am I?', 'mtollwc' ),
-			'id' => $prefix . 'where_am_i',
+			'id' => 'where_am_i',
 			'type' => 'radio',
-			'default' => 'maiatoll',
+			'default' => 'mt',
 			'options' => array(
-				'maiatoll' => __( 'maiatoll', 'mtollwc' ),
-				'witchcamp' => __( 'witchcamp', 'mtollwc' ),
+				'mt' => __( 'maiatoll', 'mtollwc' ),
+				'wc' => __( 'witchcamp', 'mtollwc' ),
 			),
 		) );
 	}
