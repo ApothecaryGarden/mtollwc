@@ -43,6 +43,10 @@ class M_Points {
 	public function maybe_give_points_at_lounge() {
 		global $post;
 
+		if ( ! is_object( $post ) ) {
+			return;
+		}
+
 		if ( 'lounge' != get_post_type( $post->ID ) ) {
 			return;
 		}
@@ -69,6 +73,11 @@ class M_Points {
 
 	function award_butterfly_badge(){
 		global $post;
+
+		if ( ! is_object( $post ) ) {
+			return;
+		}
+
 		if ( '14875' == $post->ID &&
 			 ! badgeos_get_user_achievements(
 			 	array(
