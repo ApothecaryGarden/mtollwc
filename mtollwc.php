@@ -638,3 +638,29 @@ function wc_ninja_remove_password_strength() {
 	}
 }
 add_action( 'wp_print_scripts', 'wc_ninja_remove_password_strength', 100 );
+
+/**
+ * Filter the wp-login.php logo link
+ * @return [type] [description]
+ */
+function oak_login_logo_url() {
+	return home_url();
+}
+add_filter( 'login_headerurl', 'oak_login_logo_url' );
+
+function oak_login_css() { ?>
+	<?php
+	//	$img = content_url() . '/uploads/2016/04/logo_btc.png';
+	//	$img = get_stylesheet_directory_uri() . '/images/site-login-logo.png';
+	$img = content_url() . '/uploads/2016/08/witchcamp_final-e1470748381421.png';
+	?>
+	<style type="text/css">
+		body.login div#login h1 a {
+			background-image: url(<?php echo $img ?>);
+			background-size: 259px;
+   			height: 75px;
+   			width:100%;
+		}
+	</style>
+<?php }
+add_action( 'login_head', 'oak_login_css' );
