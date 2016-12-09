@@ -65,5 +65,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 
 		</div>
 </form>
-
+<style type="text/css">
+	body:not(.logged-in) .create-account{display: block !important;}
+</style>
 <?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>

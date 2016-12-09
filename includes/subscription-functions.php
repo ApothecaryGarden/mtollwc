@@ -88,3 +88,14 @@ function autocomplete_virtual_orders( $order_status, $order_id ) {
 	return $order_status;
 }
 add_filter( 'woocommerce_payment_complete_order_status', 'autocomplete_virtual_orders', 10, 2 );
+
+function mt_funky_func() {
+	global $post;
+
+	if ( '24854' == $post->ID && ! current_user_can('administrator') ) {
+		if ( ! wc_memberships_is_user_active_member( get_current_user_id(), '13845' ) ) {
+			remove_action( 'sensei_single_course_content_inside_before', array( 'Sensei_Course', 'the_course_enrolment_actions' ), 30 );
+		}
+	}
+}
+add_action( 'template_redirect', 'mt_funky_func', 200 );

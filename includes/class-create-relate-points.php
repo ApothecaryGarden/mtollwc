@@ -90,7 +90,7 @@ class M_Create_Relate_Points {
 		update_post_meta( self::$lounge_id, '_m_lounge_points_built', 1 );
 	}
 
-	function update_the_things( $id ){
+	static function update_the_things( $id ){
 
 		if ( 0 != self::$lounge_id && $id == self::$lounge_id && 1 == self::$build ) {
 

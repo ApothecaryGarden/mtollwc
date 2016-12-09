@@ -82,7 +82,7 @@ class M_Points {
 			 ! badgeos_get_user_achievements(
 			 	array(
 			 		'achievement_id' => absint( '13738' ),
-			 		'user_id' => $user
+			 		'user_id' => get_current_user_id()
 			 		)
 				)
 			)

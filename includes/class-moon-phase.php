@@ -264,39 +264,39 @@ class M_Moon_phase extends WP_Widget {
 
 		if($ag < 1.84566) {
 			$phase = __('New Moon', 'moon-phases');
-			$image = Mtoll::url('assets/images/') . 'new_moon.png';
+			$image = Mtollwc::url('assets/images/') . 'new_moon.png';
 		}
     	else if($ag < 5.53699) {
 	    	$phase = __('Waxing Crescent Moon', 'moon-phases');
-			$image = Mtoll::url('assets/images/') . 'waxing_crescent_moon.png';
+			$image = Mtollwc::url('assets/images/') . 'waxing_crescent_moon.png';
 	    }
     	else if($ag < 9.22831) {
 			$phase = __('First Quarter Moon', 'moon-phases');
-			$image = Mtoll::url('assets/images/') . 'first_quarter_moon.png';
+			$image = Mtollwc::url('assets/images/') . 'first_quarter_moon.png';
 		}
 		else if($ag < 12.91963) {
 			$phase = __('Waxing Gibbous Moon', 'moon-phases');
-			$image = Mtoll::url('assets/images/') . 'waxing_gibbous_moon.png';
+			$image = Mtollwc::url('assets/images/') . 'waxing_gibbous_moon.png';
 		}
 		else if($ag < 16.61096) {
 			$phase = __('Full Moon', 'moon-phases');
-			$image = Mtoll::url('assets/images/') . 'full_moon.png';
+			$image = Mtollwc::url('assets/images/') . 'full_moon.png';
 		}
 		else if($ag < 20.30228) {
 			$phase = __('Waning Gibbous Moon', 'moon-phases');
-			$image = Mtoll::url('assets/images/') . 'waning_gibbous_moon.png';
+			$image = Mtollwc::url('assets/images/') . 'waning_gibbous_moon.png';
 		}
 		else if($ag < 23.99361) {
 			$phase = __('Third Quarter Moon', 'moon-phases');
-			$image = Mtoll::url('assets/images/') . 'third_quarter_moon.png';
+			$image = Mtollwc::url('assets/images/') . 'third_quarter_moon.png';
 		}
 		else if($ag < 27.68493) {
 			$phase = __('Waning Crescent Moon', 'moon-phases');
-			$image = Mtoll::url('assets/images/') . 'waning_crescent_moon.png';
+			$image = Mtollwc::url('assets/images/') . 'waning_crescent_moon.png';
 		}
 		else {
 			$phase = __('New Moon', 'moon-phases');
-			$image = Mtoll::url('assets/images/') . 'new_moon.png';
+			$image = Mtollwc::url('assets/images/') . 'new_moon.png';
 		}
 
 		// Convert phase to radians

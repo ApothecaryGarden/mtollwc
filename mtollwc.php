@@ -165,6 +165,9 @@ final class Mtollwc {
 		// some functions for woocommerce subscriptions
 		require( self::dir( 'includes/subscription-functions.php' ) );
 
+		// send stuff to convert kit
+		require( self::dir( 'includes/functions-ck.php' ) );
+
 		// should probably be in the theme
 		$this->theme_settings = new M_Theme_Settings( $this );
 
@@ -403,13 +406,34 @@ function mllp_checkout_form_template( $templates ) {
 			'path' => $plugin_path,
 			'callback'		=> 'woofunnels_maia_lunar_lounge_checkout_form',
 		);
+		$templates['autumn-2016'] = array(
+			'label'       => __( 'Autumn 2016', 'maiatoll' ),
+			'description' => __( 'for the free class into wc', 'maiatoll' ),
+			'path' => $plugin_path,
+			'callback'		=> 'woofunnels_mtollwc_autumn_2016',
+		);
 		return $templates;
 }
 
 function woofunnels_maia_lunar_lounge_checkout_form(){
 	remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
 }
+function woofunnels_mtollwc_autumn_2016(){
+	remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+	add_filter( 'wc_get_template', 'wf_autumn_2016_billing', 10, 5 );
+	remove_filter( 'wc_get_template', array( WooFunnels_Checkout_Form, 'order_review_template' ), 20, 5 );
 
+}
+function wf_autumn_2016_billing( $located, $template_name, $args, $template_path, $default_path ) {
+
+	if ( 'checkout/form-billing.php' == $template_name
+		&& $default_path !== WooFunnels::dir( 'templates/' )
+		&& is_woofunnels() ) {
+		$located = wc_locate_template( 'woofunnels-checkout-form/autumn-2016/form-billing.php', '', Mtollwc::dir( 'templates/' ) );
+	}
+
+	return $located;
+}
 /**
  *
  */

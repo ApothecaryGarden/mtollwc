@@ -5,6 +5,8 @@
  * @version 1.0.0
  * @package Mtoll
  */
+require_once dirname(__FILE__) . '/../vendor/cpt-core/CPT_Core.php';
+require_once dirname(__FILE__) . '/../vendor/cmb2/init.php';
 
 class M_Lounge extends CPT_Core {
 	/**
