@@ -158,6 +158,7 @@ final class Mtollwc {
 		require( self::dir( 'includes/class-dynamic-lounge-image.php' ) );
 		require( self::dir( 'includes/class-moon-phase.php' ) );
 		require( self::dir( 'includes/class-landing-login.php' ) );
+		require( self::dir( 'includes/shortcodes.php' ) );
 
 		// options panel
 		require( self::dir( 'includes/admin.php' ) );
