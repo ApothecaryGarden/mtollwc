@@ -3,7 +3,7 @@
  * Plugin Name: Mtollwc
  * Plugin URI:  http://github.com/oakwoodgates/mtollwc
  * Description: A radical new plugin for WordPress!
- * Version:     0.0.1
+ * Version:     0.0.2
  * Author:      WPGuru4u
  * Author URI:  http://wpguru4u.com
  * Donate link: http://github.com/oakwoodgates/mtollwc
@@ -73,7 +73,7 @@ final class Mtollwc {
 	 * @var  string
 	 * @since  0.0.1
 	 */
-	const VERSION = '0.0.1';
+	const VERSION = '0.0.2';
 
 	/**
 	 * URL of plugin directory
@@ -158,6 +158,7 @@ final class Mtollwc {
 		require( self::dir( 'includes/class-dynamic-lounge-image.php' ) );
 		require( self::dir( 'includes/class-moon-phase.php' ) );
 		require( self::dir( 'includes/class-landing-login.php' ) );
+		require( self::dir( 'includes/shortcodes.php' ) );
 
 		// options panel
 		require( self::dir( 'includes/admin.php' ) );
