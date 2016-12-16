@@ -3,7 +3,7 @@
  * Plugin Name: Mtollwc
  * Plugin URI:  http://github.com/oakwoodgates/mtollwc
  * Description: A radical new plugin for WordPress!
- * Version:     0.0.2
+ * Version:     0.0.3
  * Author:      WPGuru4u
  * Author URI:  http://wpguru4u.com
  * Donate link: http://github.com/oakwoodgates/mtollwc
@@ -73,7 +73,7 @@ final class Mtollwc {
 	 * @var  string
 	 * @since  0.0.1
 	 */
-	const VERSION = '0.0.2';
+	const VERSION = '0.0.3';
 
 	/**
 	 * URL of plugin directory
@@ -147,7 +147,7 @@ final class Mtollwc {
 	//	require_once dirname(__FILE__) . '/vendor/cpt-core/CPT_Core.php';
 	//	require_once dirname(__FILE__) . '/vendor/cmb2/init.php';
 		require( self::dir( 'vendor/cpt-core/CPT_Core.php' ) );
-		require( self::dir( 'vendor/cmb2/init.php' ) );
+	//	require( self::dir( 'vendor/cmb2/init.php' ) );
 
 		// post types
 		$this->lounge = new M_Lounge( $this );
