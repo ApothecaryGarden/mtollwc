@@ -23,9 +23,12 @@ function mtollwc_courses_not_taken_func( $atts ) {
 
 	// get all the courses 
 	$all_courses_query = new WP_Query( $query_args );
+
 	$uid = get_current_user_id();
 
 	$courses_not_taken = array();
+	$wpg = array();
+	$status = array();
 	// look through all courses
 	foreach( $all_courses_query->posts as $course ){
 
@@ -36,6 +39,10 @@ function mtollwc_courses_not_taken_func( $atts ) {
 
 	} // end foreach
 
+	// if empty, will do full query...not what we want
+	if ( empty( $courses_not_taken ) ) {
+		return '';
+	}
 	// setup the course query again and only use the course the user has not started.
 	// this query will be loaded into the global WP_Query in the render function.
 	$query_args[ 'post__in' ] = $courses_not_taken;
