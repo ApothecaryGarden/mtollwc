@@ -485,44 +485,16 @@ function mtoll_master_membership_filter( $message, $post_id, $access_time ) {
 	if ( 'lounge' === get_post_type( $post_id )
 		|| 'premium' === get_post_type( $post_id )
 		|| $post_id == maiatoll_get_option( 'maiatoll_hub_page' ) ) {
-			// WP_Query arguments
-		// WP_Query arguments
-		$block = maiatoll_get_option( 'maiatoll_witchcamp_sign_up_in' );
-		$args = array (
-			'p' => $block,
-			'post_type' => 'page',
-		);
 
-		// The Query
-		$query = new WP_Query( $args );
-
-		// The Loop
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-			//	the_content();
-				$message = apply_filters( 'the_content', get_the_content() );
-			}
+		if( is_user_logged_in() ) {
+			$message = 'Oooops! This area is for paying Witch Campers only.';
 		} else {
-
+			$content_post = get_post( maiatoll_get_option( 'maiatoll_witchcamp_sign_up_in' ) );
+			$message = $content_post->post_content;
+			$message = apply_filters('the_content', $message);
+			$message = str_replace(']]>', ']]&gt;', $message);
+		//	$message = get_post_field( 'post_content', maiatoll_get_option( 'maiatoll_witchcamp_sign_up_in' ) );
 		}
-
-		// Restore original Post Data
-		wp_reset_postdata();
-
-	//	$p = get_post(14526);
-	//	$message = $p->post_title;
-	//	$message .= 'abc';
-	//	$message .= apply_filters('the_content', get_post_field('post_content', '14526'));
-	//	$message = 'To access this content, you must <a href="http://staging.bizarre-cord.flywheelsites.com/woofunnels_checkout/lunar-lounge-signup/?empty-cart&add-to-cart=13594">signup for a free membership</a>, or <a href="' . maia_login_redirect_url() . '">log in</a> if you are a member.';
-
-	//	if ( is_user_logged_in() ) {
-		//	$message = 'To access this content, you must <a href="' . esc_url( get_permalink( maiatoll_get_option( 'maiatoll_witchcamp_signup_page' ) ) ) . '">sign up here</a>.';
-
-	//	} else {
-		//	$message = 'To access this content, you must <a href="' . esc_url( get_permalink( maiatoll_get_option( 'maiatoll_witchcamp_signup_page' ) ) ) . '">sign up</a>, or <a href="' . maia_login_redirect_url() . '">log in</a> if you are a member.';
-	//	}
-	//	$message = '';
 	}
 	return $message;
 }
