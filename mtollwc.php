@@ -175,7 +175,7 @@ final class Mtollwc {
 		// magic
 		$this->points = new M_Points( $this );
 		M_Create_Relate_Points::get_instance();
-		$this->luna_woofunnels = new M_Luna_Woofunnels( $this );
+	//	$this->luna_woofunnels = new M_Luna_Woofunnels( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
@@ -297,7 +297,7 @@ final class Mtollwc {
 			case 'path':
 			case 'lounge':
 			case 'premium':
-			case 'luna_woofunnels':
+		//	case 'luna_woofunnels':
 			case 'theme_settings':
 			case 'points':
 			case 'create_relate_points':
