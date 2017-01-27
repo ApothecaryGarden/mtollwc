@@ -171,9 +171,6 @@ final class Mtollwc {
 		// options panel
 		require( self::dir( 'includes/admin.php' ) );
 
-		// some functions for woocommerce subscriptions
-		require( self::dir( 'includes/subscription-functions.php' ) );
-
 		// send stuff to convert kit
 		require( self::dir( 'includes/functions-ck.php' ) );
 
