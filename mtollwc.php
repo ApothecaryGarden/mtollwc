@@ -108,6 +108,14 @@ final class Mtollwc {
 	protected static $single_instance = null;
 
 	/**
+	 * Instance of M_Ck_Api
+	 *
+	 * @since NEXT
+	 * @var M_Ck_Api
+	 */
+	protected $ck_api;
+
+	/**
 	 * Creates or returns an instance of this class.
 	 *
 	 * @since  0.0.1
@@ -176,6 +184,7 @@ final class Mtollwc {
 		$this->points = new M_Points( $this );
 		M_Create_Relate_Points::get_instance();
 	//	$this->luna_woofunnels = new M_Luna_Woofunnels( $this );
+		$this->ck_api = new M_CK_API( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
@@ -301,6 +310,7 @@ final class Mtollwc {
 			case 'theme_settings':
 			case 'points':
 			case 'create_relate_points':
+			case 'ck_api':
 				return $this->$field;
 			default:
 				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
