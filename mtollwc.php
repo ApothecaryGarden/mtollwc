@@ -172,7 +172,7 @@ final class Mtollwc {
 		require( self::dir( 'includes/admin.php' ) );
 
 		// send stuff to convert kit
-		require( self::dir( 'includes/functions-ck.php' ) );
+		require( self::dir( 'includes/functions.php' ) );
 
 		// should probably be in the theme
 		$this->theme_settings = new M_Theme_Settings( $this );
