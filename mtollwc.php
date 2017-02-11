@@ -3,7 +3,7 @@
  * Plugin Name: Mtollwc
  * Plugin URI:  http://github.com/oakwoodgates/mtollwc
  * Description: A radical new plugin for WordPress!
- * Version:     0.0.3
+ * Version:     0.0.4
  * Author:      WPGuru4u
  * Author URI:  http://wpguru4u.com
  * Donate link: http://github.com/oakwoodgates/mtollwc
@@ -73,7 +73,7 @@ final class Mtollwc {
 	 * @var  string
 	 * @since  0.0.1
 	 */
-	const VERSION = '0.0.3';
+	const VERSION = '0.0.4';
 
 	/**
 	 * URL of plugin directory
@@ -106,6 +106,14 @@ final class Mtollwc {
 	 * @since  0.0.1
 	 */
 	protected static $single_instance = null;
+
+	/**
+	 * Instance of M_Ck_Api
+	 *
+	 * @since NEXT
+	 * @var M_Ck_Api
+	 */
+	protected $ck_api;
 
 	/**
 	 * Creates or returns an instance of this class.
@@ -163,11 +171,8 @@ final class Mtollwc {
 		// options panel
 		require( self::dir( 'includes/admin.php' ) );
 
-		// some functions for woocommerce subscriptions
-		require( self::dir( 'includes/subscription-functions.php' ) );
-
 		// send stuff to convert kit
-		require( self::dir( 'includes/functions-ck.php' ) );
+		require( self::dir( 'includes/functions.php' ) );
 
 		// should probably be in the theme
 		$this->theme_settings = new M_Theme_Settings( $this );
@@ -175,7 +180,8 @@ final class Mtollwc {
 		// magic
 		$this->points = new M_Points( $this );
 		M_Create_Relate_Points::get_instance();
-		$this->luna_woofunnels = new M_Luna_Woofunnels( $this );
+	//	$this->luna_woofunnels = new M_Luna_Woofunnels( $this );
+		$this->ck_api = new M_CK_API( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
@@ -297,10 +303,11 @@ final class Mtollwc {
 			case 'path':
 			case 'lounge':
 			case 'premium':
-			case 'luna_woofunnels':
+		//	case 'luna_woofunnels':
 			case 'theme_settings':
 			case 'points':
 			case 'create_relate_points':
+			case 'ck_api':
 				return $this->$field;
 			default:
 				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
@@ -366,97 +373,7 @@ add_action( 'plugins_loaded', array( mtollwc(), 'hooks' ) );
 register_activation_hook( __FILE__, array( mtollwc(), '_activate' ) );
 register_deactivation_hook( __FILE__, array( mtollwc(), '_deactivate' ) );
 
-add_filter( 'woofunnels_checkout_page_templates', 'mllp_checkout_page_template' );
-function mllp_checkout_page_template( $templates ) {
-		$plugin_path  = plugin_dir_path( __FILE__ ) . 'templates/';
-		$templates['maia-lunar-lounge'] = array(
-		'label'       => __( 'Maia Lunar Lounge Signup', 'maiatoll' ),
-			'description' => __( 'Signup Page', 'maiatoll' ),
-			'path' => $plugin_path,
-			'callback'		=> 'woofunnels_maia_lunar_lounge',
-		);
-		$templates['first-promo'] = array(
-		'label'       => __( 'First Promo', 'maiatoll' ),
-			'description' => __( 'Signup for the first promo', 'maiatoll' ),
-			'path' => $plugin_path,
-			'callback'		=> 'woofunnels_maia_lunar_lounge',
-		);
-		return $templates;
-}
 
-function woofunnels_maia_lunar_lounge() {
-	new M_Luna_Woofunnels();
-}
-
-
-/**
- *
- */
-add_filter( 'woofunnels_checkout_form_templates', 'mllp_checkout_form_template' );
-function mllp_checkout_form_template( $templates ) {
-		$plugin_path  = plugin_dir_path( __FILE__ ) . 'templates/';
-		$templates['maia-lunar-lounge'] = array(
-			'label'       => __( 'Lunar Lounge Form', 'maiatoll' ),
-			'description' => __( 'for Maia Lunar Lounge Signup page template', 'maiatoll' ),
-			'path' => $plugin_path,
-			'callback'		=> 'woofunnels_maia_lunar_lounge_checkout_form',
-		);
-		$templates['first-promo'] = array(
-			'label'       => __( 'First Promo Form', 'maiatoll' ),
-			'description' => __( 'for the first promo', 'maiatoll' ),
-			'path' => $plugin_path,
-			'callback'		=> 'woofunnels_maia_lunar_lounge_checkout_form',
-		);
-		$templates['autumn-2016'] = array(
-			'label'       => __( 'Autumn 2016', 'maiatoll' ),
-			'description' => __( 'for the free class into wc', 'maiatoll' ),
-			'path' => $plugin_path,
-			'callback'		=> 'woofunnels_mtollwc_autumn_2016',
-		);
-		return $templates;
-}
-
-function woofunnels_maia_lunar_lounge_checkout_form(){
-	remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
-}
-function woofunnels_mtollwc_autumn_2016(){
-	remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
-	add_filter( 'wc_get_template', 'wf_autumn_2016_billing', 10, 5 );
-	remove_filter( 'wc_get_template', array( WooFunnels_Checkout_Form, 'order_review_template' ), 20, 5 );
-
-}
-function wf_autumn_2016_billing( $located, $template_name, $args, $template_path, $default_path ) {
-
-	if ( 'checkout/form-billing.php' == $template_name
-		&& $default_path !== WooFunnels::dir( 'templates/' )
-		&& is_woofunnels() ) {
-		$located = wc_locate_template( 'woofunnels-checkout-form/autumn-2016/form-billing.php', '', Mtollwc::dir( 'templates/' ) );
-	}
-
-	return $located;
-}
-/**
- *
- */
-add_filter( 'woofunnels_product_block_templates', 'mllp_product_block_template' );
-function mllp_product_block_template( $templates ) {
-	$plugin_path  = plugin_dir_path( __FILE__ ) . 'templates/';
-	$templates['maia-lunar-lounge-table'] = array(
-		'label'       => __( 'Lunar Lounge Form', 'maiatoll' ),
-		'description' => __( 'for Maia Lunar Lounge Signup page template', 'maiatoll' ),
-		'path' => $plugin_path,
-	);
-	$templates['first-promo-block'] = array(
-		'label'       => __( 'First Promo Block', 'maiatoll' ),
-		'description' => __( '', 'maiatoll' ),
-		'path' => $plugin_path,
-	);
-	return $templates;
-}
-
-/**
- *
- */
 function maia_login_redirect_url() {
 		$id  = get_queried_object_id();
 		$url = wc_get_page_permalink( 'myaccount' );
