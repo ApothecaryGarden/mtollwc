@@ -196,3 +196,47 @@ function mtollwc_ck_tag_awards( $user_id, $achievment_id ) {
 	return ckwc_convertkit_api_add_subscriber_to_tag( $tag, $email, $name );
 }
 add_action( 'badgeos_award_achievement', 'mtollwc_ck_tag_awards', 10, 2 );
+
+//	remove_action( 'bp_setup_nav', array( 'BuddyPress_Sensei_Loader', 'bp_sensei_add_new_setup_nav' ), 100 );
+//	remove_action( 'bp_setup_admin_bar', array( 'BuddyPress_Sensei_Loader', 'bp_sensei_add_new_admin_bar' ), 90 );
+
+/**
+ *
+ *
+ */
+function mtollwc_woocommerce_subscription_status_cancelled( $data ) {
+	$id = $data->order->id;
+	// $order = wc_get_order( $id );
+	$o2 = new WC_Order( $id );
+	$uid = $o2->user_id;
+	$ud = get_userdata( $uid );
+	$email = $ud->user_email;
+
+	$response = array();
+	$response['add'] = M_CK_API::add_tag( '94585', $email );
+	$response['remove'] = M_CK_API::remove_tag( '153249', $email );
+}
+add_action( 'woocommerce_subscription_status_cancelled', 'mtollwc_woocommerce_subscription_status_cancelled', 10, 1 );
+
+function mtollwc_woocommerce_subscriptions_after_payment_retry( $last_retry, $last_order ) {
+	$a = 'no';
+	if ( '5' == WCS_Retry_Manager::store()->get_retry_count_for_order( $last_order->id ) && 'wc-failed' == $last_order->post_status ) {
+		$a = 'yes';
+		$l_o = $last_order;
+
+		$renewal_order_id = $last_order->id;
+		// Returns an array of subscriptions related to renewal order. currently there is only one subscription product available, 
+		// but in the future we will need to make sure the sub is the correct one (since we're doing this for community membership).
+		$subscription_array = wcs_get_subscriptions_for_renewal_order( $renewal_order_id );
+		$subscription_id = key($subscription_array);
+		$subscription = (object) $subscription_array["$subscription_id"];
+
+	}
+
+	if ( '5' == WCS_Retry_Manager::store()->get_retry_count_for_order( $last_order->id ) && 'wc-failed' == $last_order->post_status ) {
+		// Update status of renewal order and subscription to cancelled
+		$last_order->update_status( 'cancelled' );
+		$subscription->update_status( 'cancelled' );
+	}
+}
+add_action( 'woocommerce_subscriptions_after_payment_retry', 'mtollwc_woocommerce_subscriptions_after_payment_retry', 10, 2 );
