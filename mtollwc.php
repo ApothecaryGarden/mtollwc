@@ -182,6 +182,7 @@ final class Mtollwc {
 		M_Create_Relate_Points::get_instance();
 	//	$this->luna_woofunnels = new M_Luna_Woofunnels( $this );
 		$this->ck_api = new M_CK_API( $this );
+		$this->ck_api = new M_BuddyPress( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
@@ -412,16 +413,6 @@ function mtoll_master_membership_filter( $message, $post_id, $access_time ) {
 			$message = str_replace(']]>', ']]&gt;', $message);
 		//	$message = get_post_field( 'post_content', maiatoll_get_option( 'maiatoll_witchcamp_sign_up_in' ) );
 		}
-	}
-	return $message;
-}
-
-// add_filter( 'wc_memberships_content_restricted_message', 'sv_filter_content_delayed_message1', 10, 3 );
-function sv_filter_content_delayed_message1( $message, $post_id, $access_time ) {
-	if ( 'premium' === get_post_type( $post_id ) ) {
-
-		$message = 'To access this content, you must <a href="http://staging.bizarre-cord.flywheelsites.com/woofunnels_checkout/lunar-lounge-signup/?empty-cart&add-to-cart=13593">purchase a premium membership</a>, or <a href="' . maia_login_redirect_url() . '">log in</a> if you are a member.';
-
 	}
 	return $message;
 }
