@@ -146,7 +146,7 @@ function mtoll_thank_you( $thankyoutext, $order ) {
 		$id = $product->id;
 		// Looking for 22688
 		if ( '22688' == $id ) {
-			return $thankyoutext = '<p>You\'re in! Welcome. Check your inbox for 3 emails- one\'s a receipt, the next is your login, and the final is a note with juicy details you need to know.</p>';
+			return $thankyoutext = '<p>You\'re in! Welcome. Check your inbox for 2 emails- one\'s a receipt, the other is a note with juicy details you need to know.</p>';
 		}
 	}
 
