@@ -202,7 +202,7 @@ add_action( 'badgeos_award_achievement', 'mtollwc_ck_tag_awards', 10, 2 );
 
 /**
  * Add and remove tag when subscription is fully cancelled
- *
+ * Remove user from BP group (also in mtollwc_remove_from_wc_group)
  */
 function mtollwc_woocommerce_subscription_status_cancelled( $data ) {
 	$id = $data->order->id;
@@ -215,6 +215,8 @@ function mtollwc_woocommerce_subscription_status_cancelled( $data ) {
 	$response = array();
 	$response['add'] = M_CK_API::add_tag( '94585', $email );
 	$response['remove'] = M_CK_API::remove_tag( '153249', $email );
+	groups_leave_group( '2', $uid );
+
 }
 add_action( 'woocommerce_subscription_status_cancelled', 'mtollwc_woocommerce_subscription_status_cancelled', 10, 1 );
 
@@ -333,4 +335,24 @@ function mtollwc_add_to_cart_redirect( $url ) {
 	}
 
 	return $url;
+}
+
+// Hook into all subscription orders (initial, switch, or renewal)
+add_action( 'woocommerce_subscription_payment_complete', 'mtollwc_add_to_group', 10, 1 );
+function mtollwc_add_to_group( $order_id ) {
+	$order = new WC_Order( $order_id );
+	$user_id = (int)$order->user_id;
+//	$user_info = get_userdata( $user_id );
+	$items = $order->get_items();
+	foreach ( $items as $item ) {
+		$product = $order->get_product_from_item( $item );
+		if ( '21096' == $product->variation_id ) {
+			groups_join_group( '2', $user_id );
+		}
+	}
+}
+add_action( 'woocommerce_subscription_payment_complete', 'mtollwc_remove_from_wc_group', 10, 1 );
+function mtollwc_remove_from_wc_group( $subscription ) {
+	$user_id = $subscription->get_user_id();
+	groups_leave_group( '2', $user_id );
 }
