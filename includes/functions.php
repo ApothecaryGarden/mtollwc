@@ -201,7 +201,7 @@ add_action( 'badgeos_award_achievement', 'mtollwc_ck_tag_awards', 10, 2 );
 //	remove_action( 'bp_setup_admin_bar', array( 'BuddyPress_Sensei_Loader', 'bp_sensei_add_new_admin_bar' ), 90 );
 
 /**
- *
+ * Add and remove tag when subscription is fully cancelled
  *
  */
 function mtollwc_woocommerce_subscription_status_cancelled( $data ) {
@@ -218,6 +218,7 @@ function mtollwc_woocommerce_subscription_status_cancelled( $data ) {
 }
 add_action( 'woocommerce_subscription_status_cancelled', 'mtollwc_woocommerce_subscription_status_cancelled', 10, 1 );
 
+// Changes the default behavior of the last retry rule
 function mtollwc_woocommerce_subscriptions_after_payment_retry( $last_retry, $last_order ) {
 	$a = 'no';
 	if ( '5' == WCS_Retry_Manager::store()->get_retry_count_for_order( $last_order->id ) && 'wc-failed' == $last_order->post_status ) {
