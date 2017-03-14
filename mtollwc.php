@@ -3,7 +3,7 @@
  * Plugin Name: Mtollwc
  * Plugin URI:  http://github.com/oakwoodgates/mtollwc
  * Description: A radical new plugin for WordPress!
- * Version:     0.0.5
+ * Version:     0.0.6
  * Author:      WPGuru4u
  * Author URI:  http://wpguru4u.com
  * Donate link: http://github.com/oakwoodgates/mtollwc
@@ -14,7 +14,7 @@
  * @link http://github.com/oakwoodgates/mtollwc
  *
  * @package Mtollwc
- * @version 0.0.5
+ * @version 0.0.6
  */
 
 /**
@@ -73,7 +73,7 @@ final class Mtollwc {
 	 * @var  string
 	 * @since  0.0.1
 	 */
-	const VERSION = '0.0.5';
+	const VERSION = '0.0.6';
 
 	/**
 	 * URL of plugin directory
