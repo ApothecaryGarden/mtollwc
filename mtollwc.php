@@ -1,20 +1,19 @@
 <?php
 /**
  * Plugin Name: Mtollwc
- * Plugin URI:  http://github.com/oakwoodgates/mtollwc
+ * Plugin URI:  http://github.com/ApothecaryGarden/mtollwc
  * Description: A radical new plugin for WordPress!
- * Version:     0.0.6
+ * Version:     0.0.7
  * Author:      WPGuru4u
  * Author URI:  http://wpguru4u.com
- * Donate link: http://github.com/oakwoodgates/mtollwc
  * License:     GPLv2
  * Text Domain: mtollwc
  * Domain Path: /languages
  *
- * @link http://github.com/oakwoodgates/mtollwc
+ * @link http://github.com/ApothecaryGarden/mtollwc
  *
  * @package Mtollwc
- * @version 0.0.6
+ * @version 0.0.7
  */
 
 /**
@@ -73,7 +72,7 @@ final class Mtollwc {
 	 * @var  string
 	 * @since  0.0.1
 	 */
-	const VERSION = '0.0.6';
+	const VERSION = '0.0.7';
 
 	/**
 	 * URL of plugin directory
