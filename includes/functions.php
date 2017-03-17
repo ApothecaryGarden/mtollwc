@@ -351,7 +351,7 @@ function mtollwc_add_to_group( $order_id ) {
 		}
 	}
 }
-add_action( 'woocommerce_subscription_payment_complete', 'mtollwc_remove_from_wc_group', 10, 1 );
+add_action( 'woocommerce_subscription_payment_failed', 'mtollwc_remove_from_wc_group', 10, 1 );
 function mtollwc_remove_from_wc_group( $subscription ) {
 	$user_id = $subscription->get_user_id();
 	groups_leave_group( '2', $user_id );
